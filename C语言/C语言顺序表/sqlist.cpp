@@ -60,7 +60,7 @@ int GetLength(SqList *L)
 //判断线性表是否为空
 int IsEmpty(SqList *L)
 {
-	if((*L).length = 0)
+	if((*L).length == 0)
 		return 1;
 	else
 		return 0;
