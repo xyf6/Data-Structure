@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-//¶¨Òå×´Ì¬
+//å®šä¹‰çŠ¶æ€
 #define TRUE 1
 #define FALSE 0
 #define OK 1
@@ -11,28 +11,28 @@
 #define OVERFLOW -2
 #define MAXSIZE 10000
 
-typedef int Status;//Status±íÊ¾×´Ì¬
+typedef int Status;//Statusè¡¨ç¤ºçŠ¶æ€
 //typedef char ElemType;
 
-//¶¨Òå¾ßÌåµÄÏßĞÔ±í£¬´Ë´¦ÎªÍ¼Êé±í¡£
+//å®šä¹‰å…·ä½“çš„çº¿æ€§è¡¨ï¼Œæ­¤å¤„ä¸ºå›¾ä¹¦è¡¨ã€‚
 typedef struct {
-	char no[20];    //ÊéºÅ
-	char name[50];  //ÊéÃû
-	float price;    //¼Û¸ñ
+	char no[20];    //ä¹¦å·
+	char name[50];  //ä¹¦å
+	float price;    //ä»·æ ¼
 }Book;
-//¶¨ÒåÏßĞÔ±í
+//å®šä¹‰çº¿æ€§è¡¨
 typedef struct {
 	Book *elem;
-	int length;//ÏßĞÔ±íµÄÊµ¼Ê³¤¶È£¬¼´Í¼ÊéµÄ¾ßÌå¸öÊı¡£
+	int length;//çº¿æ€§è¡¨çš„å®é™…é•¿åº¦ï¼Œå³å›¾ä¹¦çš„å…·ä½“ä¸ªæ•°ã€‚
 }SqList;
-//ÅĞ¶ÏÁ½½á¹¹ÌåÊÇ·ñÏàÍ¬
+//åˆ¤æ–­ä¸¤ç»“æ„ä½“æ˜¯å¦ç›¸åŒ
 int equal(Book B1,Book B2)
 {
 	if((strcmp(B1.no,B2.no) == 0)&&(strcmp(B1.name,B2.name) == 0)&&(B1.price == B2.price))
 		return TRUE;
 	return FALSE;
 }
-//³õÊ¼»¯ÏßĞÔ±í
+//åˆå§‹åŒ–çº¿æ€§è¡¨
 Status InitList(SqList *L)
 {
 	L->elem = (Book*)malloc(sizeof(Book)*MAXSIZE);
@@ -41,23 +41,23 @@ Status InitList(SqList *L)
 	L->length = 0;
 	return OK;
 }
-//Ïú»ÙÏßĞÔ±í
+//é”€æ¯çº¿æ€§è¡¨
 void DestroyList(SqList *L)
 {
 	if((*L).elem)
 		free(L);
 }
-//Çå¿ÕÏßĞÔ±í
+//æ¸…ç©ºçº¿æ€§è¡¨
 void ClearList(SqList *L)
 {
 	(*L).length = 0;
 }
-//ÇóÏßĞÔ±íLµÄ³¤¶È
+//æ±‚çº¿æ€§è¡¨Lçš„é•¿åº¦
 int GetLength(SqList *L)
 {
 	return (*L).length;
 }
-//ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ
+//åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©º
 int IsEmpty(SqList *L)
 {
 	if((*L).length = 0)
@@ -65,7 +65,7 @@ int IsEmpty(SqList *L)
 	else
 		return 0;
 }
-//¸ù¾İÎ»ÖÃi»ñÈ¡ÏàÓ¦Î»ÖÃÊı¾İÔªËØµÄÄÚÈİ
+//æ ¹æ®ä½ç½®iè·å–ç›¸åº”ä½ç½®æ•°æ®å…ƒç´ çš„å†…å®¹
 int GetElem(SqList L,int i,Book *p)
 {
 	if(i<1 || i>L.length)
@@ -73,7 +73,7 @@ int GetElem(SqList L,int i,Book *p)
 	*p = L.elem[i - 1];
 	return OK;
 }
-//¸ù¾İÖµ²éÕÒ
+//æ ¹æ®å€¼æŸ¥æ‰¾
 int LocateElem(SqList L,Book e)
 {
 	for(int i=0; i<L.length; i++) {
@@ -82,7 +82,7 @@ int LocateElem(SqList L,Book e)
 	}
 	return 0;
 }
-//²åÈë
+//æ’å…¥
 Status ListInsert(SqList &L,int i,Book e)
 {
 	if((i<1)||(i>L.length+1))
@@ -95,7 +95,7 @@ Status ListInsert(SqList &L,int i,Book e)
 	++L.length;
 	return OK;
 }
-//É¾³ı
+//åˆ é™¤
 Status ListDelete(SqList &L,int i)
 {
 	if((i<1)||(i>L.length))
@@ -105,19 +105,19 @@ Status ListDelete(SqList &L,int i)
 	--L.length;
 	return OK;
 }
-//ÏÔÊ¾ÏßĞÔ±í
+//æ˜¾ç¤ºçº¿æ€§è¡¨
 void show(SqList L)
 {
 	for(int i=0;i<L.length;i++){
-		printf("µÚ%d±¾ÊéÊÇ:%s\t%s\t%.1f\n",i+1,L.elem[i].no,L.elem[i].name,L.elem[i].price);
+		printf("ç¬¬%dæœ¬ä¹¦æ˜¯:%s\t%s\t%.1f\n",i+1,L.elem[i].no,L.elem[i].name,L.elem[i].price);
 	}
 }
 int main(void)
 {
-	Book book1 = {"10001","Î÷ÓÎ¼Ç",98.5};
-	Book book2 = {"10002","ºìÂ¥ÃÎ",150};
-	Book book3 = {"10003","¶«ÖÜÁĞ¹úÖ¾",55};
-	Book book4 = {"10004","Ë®ä°´«",90};
+	Book book1 = {"10001","è¥¿æ¸¸è®°",98.5};
+	Book book2 = {"10002","çº¢æ¥¼æ¢¦",150};
+	Book book3 = {"10003","ä¸œå‘¨åˆ—å›½å¿—",55};
+	Book book4 = {"10004","æ°´æµ’ä¼ ",90};
 	SqList L;
 	InitList(&L);
 	ListInsert(L,1,book1);
